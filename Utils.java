@@ -1,4 +1,6 @@
 import java.io.*;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -469,5 +471,41 @@ public class Utils {
                         "DOB: " + actor.dateOfBirth + "\n" +
                         "Nationality: " + actor.nationality + "\n" +
                         "Movies Worked In: " + movieCount);
+    }
+
+    public static void getMoviesOfYoungestActor() {
+
+        LocalDate referenceDate = LocalDate.of(2025, 2, 10);
+
+        Optional<Actor> youngestActorOpt = actors.stream()
+                .min(Comparator.comparing(
+                        actor -> LocalDate.parse(actor.dateOfBirth)));
+
+        if (youngestActorOpt.isEmpty()) {
+            System.out.println("No actor data available.");
+            return;
+        }
+
+        Actor youngestActor = youngestActorOpt.get();
+
+        int age = Period.between(
+                LocalDate.parse(youngestActor.dateOfBirth),
+                referenceDate).getYears();
+
+        System.out.println("Youngest Actor:");
+        System.out.println(
+                "Name: " + youngestActor.name + "\n" +
+                        "DOB: " + youngestActor.dateOfBirth + "\n" +
+                        "Nationality: " + youngestActor.nationality + "\n" +
+                        "Age as of 10-02-2025: " + age);
+
+        System.out.println("\nMovies:");
+
+        movies.stream()
+                .filter(movie -> movie.actorIds.contains(youngestActor.actorId))
+                .forEach(movie -> {
+                    System.out.println(movie);
+                    System.out.println("---------------------");
+                });
     }
 }
