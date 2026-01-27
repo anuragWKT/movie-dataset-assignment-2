@@ -442,4 +442,32 @@ public class Utils {
                                     " | Movies Directed: " + entry.getValue());
                 });
     }
+
+    public static void getActorWithMostMovies() {
+        Optional<Map.Entry<Integer, Long>> topActorEntry = movies.stream()
+                .flatMap(movie -> movie.actorIds.stream())
+                .collect(Collectors.groupingBy(
+                        actorId -> actorId,
+                        Collectors.counting()))
+                .entrySet()
+                .stream()
+                .max(Map.Entry.comparingByValue());
+
+        if (topActorEntry.isEmpty()) {
+            System.out.println("No actor data found.");
+            return;
+        }
+
+        int actorId = topActorEntry.get().getKey();
+        long movieCount = topActorEntry.get().getValue();
+
+        Actor actor = actorMap.get(actorId);
+
+        System.out.println(
+                "Actor Name: " + actor.name + "\n" +
+                        "Actor ID: " + actor.actorId + "\n" +
+                        "DOB: " + actor.dateOfBirth + "\n" +
+                        "Nationality: " + actor.nationality + "\n" +
+                        "Movies Worked In: " + movieCount);
+    }
 }
