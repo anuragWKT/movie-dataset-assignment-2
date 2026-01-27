@@ -414,4 +414,14 @@ public class Utils {
 
         System.out.println("Movie deleted successfully!");
     }
+
+    public static void getTop15MoviesByReleaseYear() {
+        movies.stream()
+                .sorted(Comparator.comparingInt(movie -> movie.releaseYear))
+                .limit(15)
+                .forEach(movie -> {
+                    System.out.println(movie);
+                    System.out.println("---------------------");
+                });
+    }
 }
