@@ -240,4 +240,21 @@ public class Utils {
                     System.out.println("----");
                 });
     }
+
+    public static void getMoviesByGenre() {
+        System.out.print("Enter genre: ");
+        String genreInput = sc.nextLine();
+        List<Movie> result = movies.stream()
+                .filter(movie -> movie.genre.equalsIgnoreCase(genreInput))
+                .toList();
+
+        if (result.isEmpty()) {
+            System.out.println("No movies found in genre: " + genreInput);
+        } else {
+            result.forEach(movie -> {
+                System.out.println(movie);
+                System.out.println("---------------------");
+            });
+        }
+    }
 }
