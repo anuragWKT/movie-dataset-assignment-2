@@ -11,6 +11,7 @@ public class MovieApp {
             System.out.println("3. Get Movies by genre");
             System.out.println("4. Get Movies by director name");
             System.out.println("5. Get Movies by release year");
+            System.out.println("6. Get Movies by release year range");
             System.out.println("14. Exit");
 
             int choice = Utils.sc.nextInt();
@@ -30,6 +31,9 @@ public class MovieApp {
                     break;
                 case 5:
                     Utils.getMoviesByReleaseYear();
+                    break;
+                case 6:
+                    Utils.getMoviesByReleaseYearRange();
                     break;
                 case 14:
                     System.out.println("Exiting program...");

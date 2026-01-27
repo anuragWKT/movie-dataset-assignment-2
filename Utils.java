@@ -298,4 +298,22 @@ public class Utils {
             });
         }
     }
+
+    public static void getMoviesByReleaseYearRange() {
+        
+        System.out.print("Enter release year range (e.g. 2014-2020): ");
+        String input = sc.nextLine();
+
+        String[] years = input.split("-");
+        int startYear = Integer.parseInt(years[0].trim());
+        int endYear = Integer.parseInt(years[1].trim());
+
+        movies.stream()
+                .filter(movie -> movie.releaseYear >= startYear &&
+                        movie.releaseYear <= endYear)
+                .forEach(movie -> {
+                    System.out.println(movie);
+                    System.out.println("---------------------");
+                });
+    }
 }
