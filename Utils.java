@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Utils {
     public static Scanner sc = new Scanner(System.in);
@@ -422,6 +423,23 @@ public class Utils {
                 .forEach(movie -> {
                     System.out.println(movie);
                     System.out.println("---------------------");
+                });
+    }
+
+    public static void getTop5DirectorsWithMostMovies() {
+        movies.stream()
+                .collect(Collectors.groupingBy(
+                        movie -> movie.directorId,
+                        Collectors.counting()))
+                .entrySet()
+                .stream()
+                .sorted(Map.Entry.<Integer, Long>comparingByValue().reversed())
+                .limit(5)
+                .forEach(entry -> {
+                    Director director = directorMap.get(entry.getKey());
+                    System.out.println(
+                            "Director: " + director.name +
+                                    " | Movies Directed: " + entry.getValue());
                 });
     }
 }

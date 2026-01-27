@@ -16,6 +16,7 @@ public class MovieApp {
             System.out.println("8. update movie rating");
             System.out.println("9. delete movie");
             System.out.println("10. top 15 movies by release year");
+            System.out.println("11. top 5 directors with most movies");
             System.out.println("14. Exit");
 
             int choice = Utils.sc.nextInt();
@@ -50,6 +51,9 @@ public class MovieApp {
                     break;
                 case 10:
                     Utils.getTop15MoviesByReleaseYear();
+                    break;
+                case 11:
+                    Utils.getTop5DirectorsWithMostMovies();
                     break;
                 case 14:
                     System.out.println("Exiting program...");
