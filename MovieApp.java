@@ -13,6 +13,7 @@ public class MovieApp {
             System.out.println("5. Get Movies by release year");
             System.out.println("6. Get Movies by release year range");
             System.out.println("7. add new movie");
+            System.out.println("8. update movie rating");
             System.out.println("14. Exit");
 
             int choice = Utils.sc.nextInt();
@@ -38,6 +39,9 @@ public class MovieApp {
                     break;
                 case 7:
                     Utils.addNewMovie();
+                    break;
+                case 8:
+                    Utils.updateMovieRating();
                     break;
                 case 14:
                     System.out.println("Exiting program...");

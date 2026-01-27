@@ -373,4 +373,28 @@ public class Utils {
         System.out.println("Movie added successfully!");
     }
 
+    public static void updateMovieRating() {
+        
+
+        System.out.print("Enter Movie ID: ");
+        int movieId = sc.nextInt();
+
+        System.out.print("Enter new rating: ");
+        double newRating = sc.nextDouble();
+
+        Optional<Movie> movieOpt = movies.stream()
+                .filter(movie -> movie.movieId == movieId)
+                .findFirst();
+
+        if (movieOpt.isEmpty()) {
+            System.out.println("Movie not found with ID: " + movieId);
+            return;
+        }
+
+        Movie movie = movieOpt.get();
+        movie.rating = newRating;
+
+        // movieMap already points to the same object
+        System.out.println("Movie rating updated successfully!");
+    }
 }
