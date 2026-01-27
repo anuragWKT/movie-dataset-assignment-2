@@ -67,6 +67,7 @@ public class MovieApp {
                     System.out.println("Exiting program...");
                     return;
                 default:
+                    System.out.println("Enter a valid choice");
                     break;
             }
         }
