@@ -316,4 +316,61 @@ public class Utils {
                     System.out.println("---------------------");
                 });
     }
+
+    public static void addNewMovie() {
+        
+
+        System.out.print("Enter Movie ID: ");
+        int movieId = sc.nextInt();
+        sc.nextLine(); // consume newline
+
+        if (movieMap.containsKey(movieId)) {
+            System.out.println("Movie with this ID already exists!");
+            return;
+        }
+
+        System.out.print("Enter Title: ");
+        String title = sc.nextLine();
+
+        System.out.print("Enter Release Year: ");
+        int releaseYear = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Enter Genre: ");
+        String genre = sc.nextLine();
+
+        System.out.print("Enter Rating: ");
+        double rating = sc.nextDouble();
+
+        System.out.print("Enter Duration (mins): ");
+        int duration = sc.nextInt();
+
+        System.out.print("Enter Director ID: ");
+        int directorId = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Enter Actor IDs (comma separated): ");
+        String actorInput = sc.nextLine();
+
+        List<Integer> actorIds = Arrays.stream(actorInput.split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .toList();
+
+        Movie movie = new Movie(
+                movieId,
+                title,
+                releaseYear,
+                genre,
+                rating,
+                duration,
+                directorId,
+                actorIds);
+
+        movies.add(movie);
+        movieMap.put(movieId, movie);
+
+        System.out.println("Movie added successfully!");
+    }
+
 }
