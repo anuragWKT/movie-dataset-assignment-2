@@ -279,4 +279,23 @@ public class Utils {
                     System.out.println("---------------------");
                 });
     }
+
+    public static void getMoviesByReleaseYear() {
+        
+        System.out.print("Enter release year: ");
+        int year = sc.nextInt();
+
+        List<Movie> result = movies.stream()
+                .filter(movie -> movie.releaseYear == year)
+                .toList();
+
+        if (result.isEmpty()) {
+            System.out.println("No movies found for year: " + year);
+        } else {
+            result.forEach(movie -> {
+                System.out.println(movie);
+                System.out.println("---------------------");
+            });
+        }
+    }
 }
