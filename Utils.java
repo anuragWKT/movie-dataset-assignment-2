@@ -397,4 +397,21 @@ public class Utils {
         // movieMap already points to the same object
         System.out.println("Movie rating updated successfully!");
     }
+
+    public static void deleteMovie() {
+    
+        System.out.print("Enter Movie ID to delete: ");
+        int movieId = sc.nextInt();
+
+        Movie movie = movieMap.remove(movieId);
+
+        if (movie == null) {
+            System.out.println("Movie not found with ID: " + movieId);
+            return;
+        }
+
+        movies.removeIf(m -> m.movieId == movieId);
+
+        System.out.println("Movie deleted successfully!");
+    }
 }
