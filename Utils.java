@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+
 public class Utils {
     public static Scanner sc = new Scanner(System.in);
     static List<Movie> movies = new ArrayList<>();
@@ -167,6 +168,7 @@ public class Utils {
             System.out.println("Error reading directors");
         }
     }
+
     public static void getMovieInfo() {
 
         System.out.println("Search movie by:");
@@ -229,4 +231,13 @@ public class Utils {
         }
     }
 
+    public static void getTopTenMovies() {
+        movies.stream()
+                .sorted((m1, m2) -> Double.compare(m2.rating, m1.rating))
+                .limit(10)
+                .forEach(movie -> {
+                    System.out.println(movie);
+                    System.out.println("----");
+                });
+    }
 }

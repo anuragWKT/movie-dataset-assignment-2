@@ -7,6 +7,7 @@ public class MovieApp {
         while (true) {
             System.out.println("-------menu----------");
             System.out.println("1. Get Movie Information");
+            System.out.println("2. Get Top 10 Rated Movies");
             System.out.println("14. Exit");
 
             int choice = Utils.sc.nextInt();
@@ -14,6 +15,9 @@ public class MovieApp {
             switch (choice) {
                 case 1:
                     Utils.getMovieInfo();
+                    break;
+                case 2:
+                    Utils.getTopTenMovies();
                     break;
                 case 14:
                     System.out.println("Exiting program...");
