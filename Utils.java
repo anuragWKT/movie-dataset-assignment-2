@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.*;
 public class Utils {
+    public static Scanner sc = new Scanner(System.in);
     static List<Movie> movies = new ArrayList<>();
     static List<Actor> actors = new ArrayList<>();
     static List<Director> directors = new ArrayList<>();
@@ -166,4 +167,66 @@ public class Utils {
             System.out.println("Error reading directors");
         }
     }
+    public static void getMovieInfo() {
+
+        System.out.println("Search movie by:");
+        System.out.println("1. Movie ID");
+        System.out.println("2. Movie Title");
+        int choice = sc.nextInt();
+        sc.nextLine();
+
+        Movie movie = null;
+
+        if (choice == 1) {
+            System.out.print("Enter Movie ID: ");
+            int id = sc.nextInt();
+            movie = movieMap.get(id);
+
+        } else if (choice == 2) {
+            System.out.print("Enter Movie Title: ");
+            String title = sc.nextLine();
+
+            for (Movie m : movies) {
+                if (m.title.equalsIgnoreCase(title)) {
+                    movie = m;
+                    break;
+                }
+            }
+        }
+
+        if (movie == null) {
+            System.out.println("Movie not found.");
+            return;
+        }
+
+        System.out.println("\n===== MOVIE DETAILS =====");
+        System.out.println("Movie ID: " + movie.movieId);
+        System.out.println("Title: " + movie.title);
+        System.out.println("Release Year: " + movie.releaseYear);
+        System.out.println("Genre: " + movie.genre);
+        System.out.println("Rating: " + movie.rating);
+        System.out.println("Duration: " + movie.duration + " mins");
+
+        // Director details
+        Director director = directorMap.get(movie.directorId);
+        if (director != null) {
+            System.out.println("\nDirector:");
+            System.out.println("Name: " + director.name);
+            System.out.println("DOB: " + director.dateOfBirth);
+            System.out.println("Nationality: " + director.nationality);
+        }
+
+        // Actor details
+        System.out.println("\nActors:");
+        for (Integer actorId : movie.actorIds) {
+            Actor actor = actorMap.get(actorId);
+            if (actor != null) {
+                System.out.println(
+                        "- " + actor.name +
+                                " | DOB: " + actor.dateOfBirth +
+                                " | Nationality: " + actor.nationality);
+            }
+        }
+    }
+
 }
