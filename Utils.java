@@ -257,4 +257,26 @@ public class Utils {
             });
         }
     }
+
+    public static void getMoviesByDirector() {
+        System.out.print("Enter director name: ");
+        String directorName = sc.nextLine();
+
+        Optional<Integer> directorId = directors.stream()
+                .filter(d -> d.name.equalsIgnoreCase(directorName))
+                .map(d -> d.directorId)
+                .findFirst();
+
+        if (directorId.isEmpty()) {
+            System.out.println("Director not found: " + directorName);
+            return;
+        }
+
+        movies.stream()
+                .filter(movie -> movie.directorId == directorId.get())
+                .forEach(movie -> {
+                    System.out.println(movie);
+                    System.out.println("---------------------");
+                });
+    }
 }
