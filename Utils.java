@@ -212,7 +212,7 @@ public class Utils {
         System.out.println("Rating: " + movie.rating);
         System.out.println("Duration: " + movie.duration + " mins");
 
-        // Director details
+        
         Director director = directorMap.get(movie.directorId);
         if (director != null) {
             System.out.println("\nDirector:");
@@ -221,7 +221,7 @@ public class Utils {
             System.out.println("Nationality: " + director.nationality);
         }
 
-        // Actor details
+        
         System.out.println("\nActors:");
         for (Integer actorId : movie.actorIds) {
             Actor actor = actorMap.get(actorId);
@@ -325,7 +325,7 @@ public class Utils {
 
         System.out.print("Enter Movie ID: ");
         int movieId = sc.nextInt();
-        sc.nextLine(); // consume newline
+        sc.nextLine(); 
 
         if (movieMap.containsKey(movieId)) {
             System.out.println("Movie with this ID already exists!");
@@ -397,7 +397,6 @@ public class Utils {
         Movie movie = movieOpt.get();
         movie.rating = newRating;
 
-        // movieMap already points to the same object
         System.out.println("Movie rating updated successfully!");
     }
 
@@ -478,7 +477,7 @@ public class Utils {
         LocalDate referenceDate = LocalDate.of(2025, 2, 10);
 
         Optional<Actor> youngestActorOpt = actors.stream()
-                .min(Comparator.comparing(
+                .max(Comparator.comparing(
                         actor -> LocalDate.parse(actor.dateOfBirth)));
 
         if (youngestActorOpt.isEmpty()) {
